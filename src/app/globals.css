@@ -26,18 +26,17 @@ body {
 /* Subtle hex grid background inspired by Rocket League arenas */
 .hex-grid {
   background-color: #0a0e1a;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 136, 255, 0.12), transparent 60%),
-    linear-gradient(rgba(0, 136, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 136, 255, 0.03) 1px, transparent 1px);
-  background-size: auto, 48px 48px, 48px 48px;
 }
 
-/* 3D coin flip — same logo on both faces */
+/* 3D coin flip background — same logo on front and back */
 .coin-flip-scene {
-  width: min(72vw, 520px);
-  height: min(72vw, 520px);
-  perspective: 1200px;
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(95vw, 640px);
+  height: min(95vw, 640px);
+  transform: translate(-50%, -50%);
+  perspective: 1400px;
 }
 
 .coin-flip-coin {
@@ -45,27 +44,36 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  animation: coin-flip-spin 10s linear infinite;
-  filter: drop-shadow(0 0 48px rgba(0, 136, 255, 0.35));
-  opacity: 0.22;
+  animation: coin-flip-spin 9s ease-in-out infinite;
+  filter: drop-shadow(0 0 60px rgba(0, 136, 255, 0.45));
+  opacity: 0.38;
 }
 
 .coin-flip-face {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 50%;
-  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.coin-flip-front {
+  transform: rotateY(0deg) translateZ(2px);
 }
 
 .coin-flip-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(2px);
 }
 
 @keyframes coin-flip-spin {
   0% {
     transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
   }
   100% {
     transform: rotateY(360deg);
@@ -76,6 +84,6 @@ body {
   .coin-flip-coin {
     animation: none;
     transform: rotateY(0deg);
-    opacity: 0.14;
+    opacity: 0.25;
   }
 }

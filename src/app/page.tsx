@@ -5,16 +5,18 @@ import { Hero } from "@/components/landing/Hero";
 
 export default function HomePage() {
   return (
-    <div className="hex-grid relative flex min-h-screen flex-col overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-[#0A0E1A]">
       <CoinFlipBackground />
 
-      <Header />
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <Header />
 
-      <main className="relative z-10 flex flex-1 flex-col pt-16">
-        <Hero />
-      </main>
+        <main className="flex flex-1 flex-col pt-16">
+          <Hero />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

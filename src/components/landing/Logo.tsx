@@ -5,21 +5,21 @@ type LogoProps = {
   showWordmark?: boolean;
 };
 
-export function Logo({ size = 96, showWordmark = true }: LogoProps) {
+export function Logo({ size = 140, showWordmark = true }: LogoProps) {
   return (
     <div className="flex flex-col items-center gap-5">
       <div className="relative">
         <div
-          className="absolute inset-0 rounded-full bg-[#0088FF]/25 blur-2xl"
+          className="absolute -inset-6 rounded-full bg-[#0088FF]/30 blur-3xl"
           aria-hidden="true"
         />
         <Image
-          src="/logo-rl-os.webp"
+          src="/logo-rl-os.png"
           alt="RL LeagueOS logo"
           width={size}
           height={size}
           priority
-          className="relative rounded-full drop-shadow-[0_0_24px_rgba(0,136,255,0.55)]"
+          className="relative h-auto w-auto max-w-[min(90vw,280px)] drop-shadow-[0_0_40px_rgba(0,136,255,0.6)]"
         />
       </div>
       {showWordmark && (

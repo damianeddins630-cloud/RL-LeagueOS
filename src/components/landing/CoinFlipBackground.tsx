@@ -1,44 +1,40 @@
 "use client";
 
-import Image from "next/image";
+const LOGO_SRC = "/logo-rl-os.png";
 
 type CoinFlipBackgroundProps = {
   className?: string;
 };
 
+function CoinFace({ className }: { className: string }) {
+  return (
+    <div className={`coin-flip-face ${className}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={LOGO_SRC}
+        alt=""
+        className="h-full w-full object-contain"
+        draggable={false}
+      />
+    </div>
+  );
+}
+
 export function CoinFlipBackground({ className = "" }: CoinFlipBackgroundProps) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      className={`pointer-events-none absolute inset-0 z-0 overflow-hidden ${className}`}
       aria-hidden="true"
     >
-      <div className="coin-flip-scene absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="coin-flip-scene">
         <div className="coin-flip-coin">
-          <div className="coin-flip-face coin-flip-front">
-            <Image
-              src="/logo-rl-os.webp"
-              alt=""
-              width={520}
-              height={520}
-              className="h-full w-full object-contain"
-              priority
-            />
-          </div>
-          <div className="coin-flip-face coin-flip-back">
-            <Image
-              src="/logo-rl-os.webp"
-              alt=""
-              width={520}
-              height={520}
-              className="h-full w-full object-contain"
-              priority
-            />
-          </div>
+          <CoinFace className="coin-flip-front" />
+          <CoinFace className="coin-flip-back" />
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0E1A_68%)]" />
-      <div className="absolute inset-0 bg-[#0A0E1A]/55" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,136,255,0.08)_0%,transparent_45%,#0A0E1A_80%)]" />
+      <div className="absolute inset-0 bg-[#0A0E1A]/40" />
     </div>
   );
 }

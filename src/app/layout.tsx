@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "The modern platform for managing Rocket League leagues, teams, players, schedules, and stats.",
   icons: {
-    icon: "/logo-rl-os.webp",
+    icon: "/logo-rl-os.png",
   },
 };
 

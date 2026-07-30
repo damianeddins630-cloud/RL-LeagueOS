@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/Button";
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0A0E1A]/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0A0E1A]/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
           <Image
-            src="/logo-rl-os.webp"
+            src="/logo-rl-os.png"
             alt="RL LeagueOS"
-            width={40}
-            height={40}
-            className="rounded-full drop-shadow-[0_0_10px_rgba(0,136,255,0.5)]"
+            width={44}
+            height={44}
+            className="h-11 w-11 object-contain drop-shadow-[0_0_12px_rgba(0,136,255,0.55)]"
           />
           <span className="text-lg font-bold tracking-tight text-white">
             <span className="text-[#4FC3FF]">RL</span> LeagueOS
