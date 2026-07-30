@@ -3,21 +3,20 @@ import { Logo } from "@/components/landing/Logo";
 
 export function Hero() {
   return (
-    <section className="flex flex-1 flex-col items-center justify-center px-6 py-24">
-      <div className="relative z-10 flex w-full max-w-2xl flex-col items-center gap-10 text-center">
-        <Logo size={120} />
+    <section className="flex flex-1 flex-col items-center justify-center px-6 py-20 sm:py-28">
+      <div className="relative z-10 flex w-full max-w-xl flex-col items-center gap-12 text-center">
+        <Logo />
 
-        <div className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4FC3FF]">
-            Rocket League League Management
-          </p>
-          <p className="text-lg leading-relaxed text-white/70 sm:text-xl">
-            Run your league from one place — teams, players, schedules, stats,
-            and match replays.
+        <div className="space-y-3">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            RL <span className="text-[#0088FF]">LeagueOS</span>
+          </h1>
+          <p className="text-base leading-relaxed text-white/50 sm:text-lg">
+            League management for Rocket League. Clean. Fast. Built for esports.
           </p>
         </div>
 
-        <div className="flex w-full max-w-md flex-col gap-4 sm:flex-row sm:justify-center">
+        <div className="flex w-full max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
           <Button variant="primary" className="w-full sm:w-auto">
             Sign Up
           </Button>

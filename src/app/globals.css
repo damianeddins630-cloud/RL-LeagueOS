@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e1a;
+  --background: #000000;
   --foreground: #ffffff;
-  --accent-blue: #0088ff;
-  --accent-blue-light: #4fc3ff;
-  --surface: #111827;
+  --accent-blue: #0066ff;
+  --accent-blue-bright: #0088ff;
+  --accent-blue-light: #3d9bff;
+  --surface: #0a0a0a;
+  --border: rgba(0, 102, 255, 0.2);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent-blue: var(--accent-blue);
+  --color-accent-blue-bright: var(--accent-blue-bright);
   --color-accent-blue-light: var(--accent-blue-light);
   --color-surface: var(--surface);
   --font-sans: var(--font-rajdhani);
@@ -23,20 +26,15 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Subtle hex grid background inspired by Rocket League arenas */
-.hex-grid {
-  background-color: #0a0e1a;
-}
-
-/* 3D coin flip background — same logo on front and back */
+/* Ambient coin-flip background */
 .coin-flip-scene {
   position: absolute;
   left: 50%;
-  top: 46%;
-  width: min(95vw, 640px);
-  height: min(95vw, 640px);
+  top: 50%;
+  width: min(88vw, 560px);
+  height: min(88vw, 560px);
   transform: translate(-50%, -50%);
-  perspective: 1400px;
+  perspective: 1600px;
 }
 
 .coin-flip-coin {
@@ -44,9 +42,9 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  animation: coin-flip-spin 9s ease-in-out infinite;
-  filter: drop-shadow(0 0 60px rgba(0, 136, 255, 0.45));
-  opacity: 0.38;
+  animation: coin-flip-spin 12s ease-in-out infinite;
+  filter: drop-shadow(0 0 80px rgba(0, 102, 255, 0.25));
+  opacity: 0.16;
 }
 
 .coin-flip-face {
@@ -84,6 +82,6 @@ body {
   .coin-flip-coin {
     animation: none;
     transform: rotateY(0deg);
-    opacity: 0.25;
+    opacity: 0.1;
   }
 }

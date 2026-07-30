@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { type ComponentPropsWithoutRef } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "ghost";
 
 type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   variant?: ButtonVariant;
@@ -10,14 +10,16 @@ type ButtonProps = ComponentPropsWithoutRef<"button"> & {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-to-r from-[#0088FF] to-[#0066CC] text-white shadow-[0_0_24px_rgba(0,136,255,0.35)] hover:shadow-[0_0_32px_rgba(0,136,255,0.5)] hover:from-[#1A9AFF] hover:to-[#0077EE] border border-[#4FC3FF]/30",
+    "bg-[#0066FF] text-white hover:bg-[#0088FF] border border-[#0066FF] hover:border-[#0088FF]",
   secondary:
-    "bg-transparent text-white border border-white/25 hover:border-[#4FC3FF]/60 hover:bg-white/5 hover:text-[#E8F6FF]",
+    "bg-transparent text-white border border-[#0066FF]/50 hover:border-[#0088FF] hover:bg-[#0066FF]/10",
+  ghost:
+    "bg-transparent text-white/70 border border-transparent hover:text-white hover:bg-white/5",
 };
 
 function buttonClassName(variant: ButtonVariant, className?: string) {
   return [
-    "inline-flex items-center justify-center rounded-lg px-8 py-3 text-sm font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0088FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0E1A] sm:px-10 sm:py-3.5 sm:text-base",
+    "inline-flex items-center justify-center rounded-md px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF] focus-visible:ring-offset-2 focus-visible:ring-offset-black",
     variantStyles[variant],
     className,
   ]
