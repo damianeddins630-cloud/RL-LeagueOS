@@ -1,11 +1,4 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "functions": {
-    "src/app/api/replay/parse/route.ts": {
-      "maxDuration": 60,
-      "memory": 1024
-    }
-  }
+  "buildCommand": "next build",
+  "installCommand": "npm install --legacy-peer-deps"
 }
