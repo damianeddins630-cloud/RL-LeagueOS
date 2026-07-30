@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Keep WASM replay parser external for Node.js serverless on Vercel
+  serverExternalPackages: ["@rlrml/subtr-actor"],
 };
 
 export default nextConfig;
