@@ -5,6 +5,7 @@ import { CoinFlipBackground } from "@/components/landing/CoinFlipBackground";
 import { Hero } from "@/components/landing/Hero";
 import { LoggedInHome } from "@/components/home/LoggedInHome";
 import { db } from "@/lib/db";
+import { getUserAccess } from "@/lib/auth-helpers";
 
 export const dynamic = "force-dynamic";
 
@@ -46,13 +47,24 @@ export default async function HomePage() {
     );
   }
 
+  const access = await getUserAccess(user.id);
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <CoinFlipBackground />
       <div className="relative z-10 flex min-h-screen flex-col">
-        <Header userName={session.user.name} isLoggedIn />
+        <Header
+          userName={session.user.name}
+          isLoggedIn
+          canViewLeague={access.canViewLeague}
+        />
         <main className="flex flex-1 flex-col pt-14">
-          <LoggedInHome user={user} discordName={session.user.name ?? user.name ?? ""} />
+          <LoggedInHome
+            user={user}
+            discordName={session.user.name ?? user.name ?? ""}
+            canViewLeague={access.canViewLeague}
+            isAdmin={access.isAdmin}
+          />
         </main>
         <Footer />
       </div>

@@ -70,7 +70,7 @@ export default async function PlayersPage() {
               { key: "demos", label: "DM" },
             ]}
             rows={playerRows(data.players, category.key)}
-            emptyMessage="No player stats yet. Upload replays in Admin."
+            emptyMessage="No player stats yet. Upload replays from the schedule page."
           />
         </section>
       ))}

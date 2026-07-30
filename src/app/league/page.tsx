@@ -1,30 +1,42 @@
 import Link from "next/link";
+import { ApplicationReviewPanel } from "@/components/league/ApplicationReviewPanel";
 import { getLeagueOverview } from "@/lib/league";
+import { requireLeagueAccess } from "@/lib/auth-helpers";
+import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
 export default async function LeagueOverviewPage() {
+  const gate = await requireLeagueAccess();
   const data = await getLeagueOverview();
 
   if (!data) {
     return (
       <div className="rounded-lg border border-[#0066FF]/20 bg-[#0a0a0a] p-8 text-center text-white/60">
-        League not configured yet. Visit{" "}
-        <Link href="/admin" className="text-[#0088FF] hover:underline">
-          Admin
-        </Link>{" "}
-        to set up.
+        League data is not available yet.
       </div>
     );
   }
+
+  const pendingApplications =
+    gate.ok && gate.access.isAdmin
+      ? await db.leagueApplication.findMany({
+          where: { status: "PENDING" },
+          orderBy: { createdAt: "desc" },
+        })
+      : [];
 
   const { league, franchiseCount, memberCount, standings } = data;
   const topTeams = standings.slice(0, 5);
 
   return (
     <div className="space-y-8">
+      {gate.ok && gate.access.isAdmin && (
+        <ApplicationReviewPanel applications={pendingApplications} />
+      )}
+
       <section className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="League" value={league.name} />
+        <StatCard label="League" value="RLES 2v2" />
         <StatCard label="Franchises" value={String(franchiseCount)} />
         <StatCard label="Members" value={String(memberCount)} />
       </section>

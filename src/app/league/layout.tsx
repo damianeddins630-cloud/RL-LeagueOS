@@ -1,11 +1,19 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { LeagueNav } from "@/components/league/LeagueNav";
+import { requireLeagueAccess } from "@/lib/auth-helpers";
 
-export default function LeagueLayout({
+export default async function LeagueLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const gate = await requireLeagueAccess();
+
+  if (!gate.ok) {
+    redirect("/");
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="border-b border-[#0066FF]/20 bg-black">
@@ -15,13 +23,10 @@ export default function LeagueLayout({
               RL LeagueOS
             </Link>
             <h1 className="text-xl font-bold text-white sm:text-2xl">
-              Rocket League Elite Series
+              Rocket League Elite Series 2v2
             </h1>
           </div>
-          <Link
-            href="/"
-            className="text-sm text-white/50 transition-colors hover:text-white"
-          >
+          <Link href="/" className="text-sm text-white/50 transition-colors hover:text-white">
             Home
           </Link>
         </div>

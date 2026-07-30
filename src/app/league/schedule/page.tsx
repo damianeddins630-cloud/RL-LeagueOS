@@ -1,9 +1,12 @@
 import { DataTable } from "@/components/league/DataTable";
+import { LeagueAdminPanel } from "@/components/league/LeagueAdminPanel";
 import { getLeagueOverview } from "@/lib/league";
+import { requireLeagueAccess } from "@/lib/auth-helpers";
 
 export const dynamic = "force-dynamic";
 
 export default async function SchedulePage() {
+  const gate = await requireLeagueAccess();
   const data = await getLeagueOverview();
 
   if (!data) {
@@ -18,6 +21,8 @@ export default async function SchedulePage() {
         <h2 className="text-2xl font-bold text-white">Schedule</h2>
         <p className="mt-1 text-white/50">10-week regular season — all matchups</p>
       </div>
+
+      {gate.ok && gate.access.isAdmin && <LeagueAdminPanel />}
 
       {weeks.map((week) => {
         const weekMatches = data.league.matches.filter((match) => match.week === week);
@@ -58,9 +63,7 @@ export default async function SchedulePage() {
                   status: (
                     <span
                       className={
-                        match.status === "COMPLETED"
-                          ? "text-[#0088FF]"
-                          : "text-white/40"
+                        match.status === "COMPLETED" ? "text-[#0088FF]" : "text-white/40"
                       }
                     >
                       {match.status === "COMPLETED" ? "Final" : "Scheduled"}

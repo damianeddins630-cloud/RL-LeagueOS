@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/auth-helpers";
 import { processReplayForMatch } from "@/lib/replay/process";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
+  const gate = await requireAdmin();
+  if (!gate.ok) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 403 });
+  }
+
   try {
     const formData = await request.formData();
     const matchId = formData.get("matchId");

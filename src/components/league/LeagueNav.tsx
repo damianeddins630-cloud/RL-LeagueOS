@@ -10,7 +10,6 @@ const links = [
   { href: "/league/players", label: "Players" },
   { href: "/league/rosters", label: "Rosters" },
   { href: "/league/members", label: "Members" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export function LeagueNav() {

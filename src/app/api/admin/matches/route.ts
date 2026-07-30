@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/auth-helpers";
 import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
 
 export async function GET() {
+  const gate = await requireAdmin();
+  if (!gate.ok) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 403 });
+  }
   const franchises = await db.franchise.findMany({
     orderBy: { name: "asc" },
     select: { id: true, name: true, abbreviation: true, conference: true },
@@ -22,6 +27,11 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const gate = await requireAdmin();
+  if (!gate.ok) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 403 });
+  }
+
   try {
     const body = await request.json();
     const { week, scheduledAt, homeFranchiseId, awayFranchiseId } = body;
