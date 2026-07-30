@@ -6,8 +6,10 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@rlrml/subtr-actor"],
   // Ensure the WASM binary is traced into the serverless function bundle on Vercel
   outputFileTracingIncludes: {
-    "/api/replay/parse": [
+    "/*": ["./prisma/vercel.db"],
+    "/api/**/*": [
       join("node_modules", "@rlrml", "subtr-actor", "**", "*"),
+      "./prisma/vercel.db",
     ],
   },
 };

@@ -1,4 +1,12 @@
 {
-  "buildCommand": "prisma generate && prisma migrate deploy && npm run db:seed && next build",
-  "installCommand": "npm install --legacy-peer-deps"
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "bash scripts/vercel-build.sh",
+  "build": {
+    "env": {
+      "DATABASE_URL": "file:./prisma/vercel.db"
+    }
+  },
+  "env": {
+    "DATABASE_URL": "file:./prisma/vercel.db"
+  }
 }
