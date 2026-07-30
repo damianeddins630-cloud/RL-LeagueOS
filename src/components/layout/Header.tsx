@@ -8,11 +8,11 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
           <Image
-            src="/logo.svg"
+            src="/logo-rl-os.webp"
             alt="RL LeagueOS"
-            width={36}
-            height={36}
-            className="drop-shadow-[0_0_10px_rgba(0,136,255,0.4)]"
+            width={40}
+            height={40}
+            className="rounded-full drop-shadow-[0_0_10px_rgba(0,136,255,0.5)]"
           />
           <span className="text-lg font-bold tracking-tight text-white">
             <span className="text-[#4FC3FF]">RL</span> LeagueOS
