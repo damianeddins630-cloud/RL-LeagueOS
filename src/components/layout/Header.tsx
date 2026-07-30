@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DiscordLoginButton } from "@/components/auth/DiscordLoginButton";
+import { LogoutButton } from "@/components/auth/LogoutButton";
 import { Button } from "@/components/ui/Button";
 
-export function Header() {
+type HeaderProps = {
+  isLoggedIn?: boolean;
+  userName?: string | null;
+};
+
+export function Header({ isLoggedIn = false, userName }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#0066FF]/20 bg-black/90 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
@@ -20,12 +27,24 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" className="hidden px-4 py-2 text-sm sm:inline-flex">
-            Log In
-          </Button>
-          <Button variant="primary" className="px-4 py-2 text-sm">
-            Sign Up
-          </Button>
+          {isLoggedIn ? (
+            <>
+              {userName && (
+                <span className="hidden text-sm text-white/50 sm:inline">{userName}</span>
+              )}
+              <Button variant="ghost" href="/league" className="px-4 py-2 text-sm">
+                League
+              </Button>
+              <LogoutButton className="px-4 py-2 text-sm" />
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" href="/league" className="hidden px-4 py-2 text-sm sm:inline-flex">
+                League
+              </Button>
+              <DiscordLoginButton className="px-4 py-2 text-sm" />
+            </>
+          )}
         </div>
       </div>
     </header>

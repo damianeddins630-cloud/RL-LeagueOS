@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { DiscordLoginButton } from "@/components/auth/DiscordLoginButton";
 import { Logo } from "@/components/landing/Logo";
 
 export function Hero() {
@@ -12,16 +13,15 @@ export function Hero() {
             RL <span className="text-[#0088FF]">LeagueOS</span>
           </h1>
           <p className="text-base leading-relaxed text-white/50 sm:text-lg">
-            League management for Rocket League. Clean. Fast. Built for esports.
+            Log in with Discord to apply for{" "}
+            <span className="text-white/80">Rocket League Elite Series 2v2</span>.
           </p>
         </div>
 
         <div className="flex w-full max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-          <Button variant="primary" href="/league" className="w-full sm:w-auto">
-            Enter League
-          </Button>
-          <Button variant="secondary" href="/admin" className="w-full sm:w-auto">
-            Admin
+          <DiscordLoginButton className="w-full sm:w-auto" />
+          <Button variant="secondary" href="/league" className="w-full sm:w-auto">
+            View League
           </Button>
         </div>
       </div>
