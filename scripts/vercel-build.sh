@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export DATABASE_URL="${DATABASE_URL:-file:./prisma/vercel.db}"
+export DATABASE_URL="${DATABASE_URL:-file:./vercel.db}"
 
 echo "Using DATABASE_URL=$DATABASE_URL"
 

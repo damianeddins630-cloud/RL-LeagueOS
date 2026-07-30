@@ -3,10 +3,10 @@
   "buildCommand": "bash scripts/vercel-build.sh",
   "build": {
     "env": {
-      "DATABASE_URL": "file:./prisma/vercel.db"
+      "DATABASE_URL": "file:./vercel.db"
     }
   },
   "env": {
-    "DATABASE_URL": "file:./prisma/vercel.db"
+    "DATABASE_URL": "file:./vercel.db"
   }
 }
