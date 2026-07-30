@@ -17,11 +17,11 @@ export function Hero() {
         </div>
 
         <div className="flex w-full max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-          <Button variant="primary" className="w-full sm:w-auto">
-            Sign Up
+          <Button variant="primary" href="/league" className="w-full sm:w-auto">
+            Enter League
           </Button>
-          <Button variant="secondary" className="w-full sm:w-auto">
-            Log In
+          <Button variant="secondary" href="/admin" className="w-full sm:w-auto">
+            Admin
           </Button>
         </div>
       </div>

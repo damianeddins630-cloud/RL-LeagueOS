@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model League {
+  id         String      @id @default(cuid())
+  name       String
+  season     String
+  totalWeeks Int         @default(10)
+  franchises Franchise[]
+  matches    Match[]
+  createdAt  DateTime    @default(now())
+}
+
+model Franchise {
+  id           String     @id @default(cuid())
+  name         String
+  abbreviation String
+  conference   String
+  leagueId     String
+  league       League     @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  members      Member[]
+  homeMatches  Match[]    @relation("HomeTeam")
+  awayMatches  Match[]    @relation("AwayTeam")
+
+  @@index([leagueId])
+}
+
+model Member {
+  id          String           @id @default(cuid())
+  name        String
+  gamertag    String
+  tier        Int              @default(1)
+  franchiseId String
+  franchise   Franchise        @relation(fields: [franchiseId], references: [id], onDelete: Cascade)
+  gameStats   PlayerGameStat[]
+
+  @@index([franchiseId])
+}
+
+model Match {
+  id              String      @id @default(cuid())
+  week            Int
+  scheduledAt     DateTime
+  leagueId        String
+  league          League      @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  homeFranchiseId String
+  awayFranchiseId String
+  homeFranchise   Franchise   @relation("HomeTeam", fields: [homeFranchiseId], references: [id])
+  awayFranchise   Franchise   @relation("AwayTeam", fields: [awayFranchiseId], references: [id])
+  status          String      @default("SCHEDULED")
+  series          Series[]
+
+  @@index([leagueId, week])
+}
+
+model Series {
+  id          String           @id @default(cuid())
+  gameNumber  Int
+  matchId     String
+  match       Match            @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  homeGoals   Int              @default(0)
+  awayGoals   Int              @default(0)
+  replayFile  String?
+  playerStats PlayerGameStat[]
+
+  @@index([matchId])
+}
+
+model PlayerGameStat {
+  id       String @id @default(cuid())
+  seriesId String
+  series   Series @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  memberId String
+  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  goals    Int    @default(0)
+  saves    Int    @default(0)
+  assists  Int    @default(0)
+  shots    Int    @default(0)
+  demos    Int    @default(0)
+
+  @@index([seriesId])
+  @@index([memberId])
+}

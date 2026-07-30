@@ -7,14 +7,23 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
-    "parse-replay": "tsx scripts/parse-replay.ts"
+    "parse-replay": "tsx scripts/parse-replay.ts",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma migrate reset --force && npm run db:seed"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "@rlrml/subtr-actor": "^1.2.0",
+    "dotenv": "^17.4.2",
     "next": "15.5.22",
+    "prisma": "^5.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
