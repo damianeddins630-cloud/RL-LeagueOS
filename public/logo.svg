@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="RL LeagueOS logo">
+  <defs>
+    <linearGradient id="shield-gradient" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4FC3FF"/>
+      <stop offset="45%" stop-color="#0088FF"/>
+      <stop offset="100%" stop-color="#0047AB"/>
+    </linearGradient>
+    <linearGradient id="inner-glow" x1="60" y1="28" x2="60" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#B8E4FF" stop-opacity="0.35"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer hex ring -->
+  <path
+    d="M60 8 L98 30 L98 74 L60 96 L22 74 L22 30 Z"
+    stroke="url(#shield-gradient)"
+    stroke-width="3"
+    fill="#0A0E1A"
+    filter="url(#glow)"
+  />
+
+  <!-- Shield body -->
+  <path
+    d="M60 18 L88 36 L88 68 L60 86 L32 68 L32 36 Z"
+    fill="url(#shield-gradient)"
+  />
+
+  <!-- Inner shield highlight -->
+  <path
+    d="M60 26 L78 38 L78 66 L60 78 L42 66 L42 38 Z"
+    fill="#0A0E1A"
+    opacity="0.92"
+  />
+
+  <!-- Stylized L mark -->
+  <path
+    d="M46 40 H54 V62 H70 V70 H46 Z"
+    fill="url(#inner-glow)"
+  />
+
+  <!-- Accent orb (ball-inspired) -->
+  <circle cx="72" cy="44" r="5" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="70.5" cy="42.5" r="1.5" fill="#0088FF" opacity="0.6"/>
+</svg>
